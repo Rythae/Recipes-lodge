@@ -1,0 +1,53 @@
+@extends('layouts.app')
+
+@section('content')
+
+      <div class="col-md-9 col-lg-9 col-sm-9 float-sm-left">
+
+      <div class=" col-md-12 col-lg-12 col-sm-12" style="background: white; magin: 10px;">
+            <form method="post" action="{{ route('recipes.update',[$recipe->id]) }}">
+                            {{ csrf_field() }}
+                            
+                            <input type="hidden" name="_method" value="put">
+
+                            <div class="form-group">
+                            <label for="recipe-title">Recipe Title<span class="required">*</span></label>
+                            <input placeholder="Enter title"
+                                    id="recipe-title"
+                                    required
+                                    name="title"
+                                    spellcheck="false"
+                                    class="form-control"
+                                    value="{{ $recipe->title }}"
+                                    />
+                            </div>
+
+                            <div class="form-group">
+                            <label for="recipe-content">Description</label>
+                            <textarea placeholder="Enter description"
+                                    style="resize: vertical"
+                                    id="recipe-content"
+                                    name="description"
+                                    rows="5" spellcheck="false"
+                                    class="form-control autosize-target text-left">
+                                    {{ $recipe->description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                            <input type="submit" class="btn btn-primary"
+                                value="Submit"/>
+                            </div>
+            </form>
+            </div>
+        </div>    
+
+    <div class="col-sm-3 col-md-3 col-lg-3 float-sm-right">
+          
+          <div class="sidebar-module">
+            <h4>Actions</h4>
+            <ol class="list-unstyled">
+              <li><a href="/recipes/{{ $recipe->id }}">View recipes</a></li>
+              <li><a href="/recipes">All recipes</a></li>
+            </ol>
+          </div>
+        </div>
+    @endsection
